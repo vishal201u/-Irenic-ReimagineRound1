@@ -9,28 +9,80 @@ const scroll = new LocomotiveScroll({
 var tl = gsap.timeline();
 
 tl.from(".nav h1", {
-  y:-40,
-  opacity:0,
-  duration:0.5,
-  delay:0.5,
-  stagger:0.15
+  y: -40,
+  opacity: 0,
+  duration: 0.5,
+  delay: 0.5,
+  stagger: 0.15
 
-},"a")
+}, "a")
 
 tl.from(".indian", {
-  x:-30,
-  opacity:0,
-  duration:0.5,
-  delay:0.5,
-  
+  x: -30,
+  opacity: 0,
+  duration: 0.5,
+  delay: 0.5,
 
-},'a')
+
+}, 'a')
 
 tl.from(".box", {
-  y:30,
-  opacity:0,
-  duration:0.5,
-  delay:0.5,
-  
+  y: 30,
+  opacity: 0,
+  duration: 1,
+  delay: 0.5,
 
-},'a')
+
+}, 'a')
+
+tl.to(".box", {
+  scale: 0.5,
+  duration: 0.5,
+  ease: "power3",
+  scrollTrigger: {
+    trigger: ".box",
+    scroller: "body",
+    markers: true,
+    start: "top 17%",
+    scrub: 2
+
+  }
+})
+
+tl.to(".box2", {
+  scale: 0.5,
+  duration: 0.5,
+  ease: "power3",
+  scrollTrigger: {
+    trigger: ".box",
+    scroller: "body",
+    markers: true,
+    start: "bottom 30%",
+    scrub: 2
+
+  }
+})
+
+// tl.to(".box3", {
+//   scale:0.5,
+//   duration:1,
+//   scrollTrigger:{
+//     trigger:".box",
+//     scroller:"body",
+//     markers:true,
+//     start:"bottom 50%",
+//     scrub:2
+
+//   }
+// })
+
+tl.from(".marque", {
+  x: 300,
+  duration: 0.5,
+  delay: 0.5,
+  scrollTrigger: {
+    trigger: ".box3",
+    scroller: "body",
+    scrub: 2
+  }
+})

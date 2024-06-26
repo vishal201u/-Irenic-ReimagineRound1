@@ -11,9 +11,9 @@
     <script src="https://cdn.tailwindcss.com"></script>
   </head>
   <body>
-    <div class="main h-[100vmax] w-full relative font-[gilroy]">
+    <div class="main h-[100vmax] w-full relative bg-black font-[gilroy]">
       <div
-        class="nav z-[9] h-[5%] bg-white/20 bg-black bg-opacity-40 backdrop-blur fixed w-[100%] text-white text-xl flex justify-center gap-[8%] items-center"
+        class="nav z-50 h-[5%] bg-white/20 backdrop-blur fixed w-full text-white text-xl flex justify-center gap-[8%] items-center"
       >
         <div
           class="bg-[url(./IRCTC-Color.png)] flex h-[60%] w-[4%] bg-cover"
@@ -190,7 +190,7 @@
       <div
         class="w-[100%] flex justify-center h-[60%] bg-cover bg-[url(https://w0.peakpx.com/wallpaper/18/8/HD-wallpaper-black-blue-boxes-black.jpg)]"
       >
-        <div class="w-[80%] h-[50%] flex items-center flex-col mt-[25%]">
+        <div class="box2 w-[80%] h-[50%] flex items-center flex-col mt-[25%]">
           <h1 class="text-[3vw] text-[#E2E5EC] font-bold">
             Our other popular services
           </h1>
@@ -272,7 +272,7 @@
           </div>
         </div>
       </div>
-      <div class="w-[100%] flex justify-center h-[35%] bg-[#020308]">
+      <div class="box3 w-[100%] flex justify-center h-[35%] bg-[#020308]">
         <div class="mt-[6vw] bg-cover w-[100%] h-[85%] bg-[url(./call.jpg)]">
           <div class="text-[#FFFFFF] ml-[10%] mt-[12%] w-[50%]">
             <h1 class="text-[#FFFFFF] text-[3vw] font-semibold">
@@ -291,7 +291,7 @@
         <div
           class="w-[100%] bg-[red] h-[7%] flex justify-between items-center text-white"
         >
-          <h1 class="flex gap-[2vw]">
+          <h1 class="marque flex gap-[2vw]">
             <i class="ri-checkbox-blank-circle-fill"></i> IRCTC would never
             offer to install any app in response to a customer complaint or
             request personal , financial information from you ,such as your date
@@ -305,8 +305,8 @@
         </div>
       </div>
 
-      <div class="h-[30%] bg-[#020308] w-[100%] mt-[2%] text-white">
-        <div class="w-[100%] mt-[-2%] flex justify-center gap-[1%] h-[100%]">
+      <div class="h-[30%] bg-[#020308] w-[100%] mt-[-2px] text-white">
+        <div class="w-[100%] flex justify-center gap-[1%] h-[100%]">
           <div
             class="w-[30%] bg-[#181A1C] flex flex-col rounded-[9%] gap-[1%] items-center text- h-[94%]"
           >
@@ -361,24 +361,24 @@
           </div>
         </div>
       </div>
-      <div class="h-[8%] bg-[#020308] w-[100%] mt-[2%] text-white">
-        <div class="mt-[-2%] flex justify-center gap-[1%]">
+      <div class="h-[8%] bg-[#020308] w-[100%] mt-[-2px] text-white">
+        <div class="flex justify-center gap-[1%]">
           <div
-            class="hover:border-[white] hover:rounded-full hover:text-[#2475EE]"
+            class="ease-in-out duration-300 hover:border-[white] hover:rounded-full hover:text-[#2475EE]"
           >
             <i
               class="ri-checkbox-blank-circle-fill rounded-full bg-[white] hover:p-[5px]"
             ></i>
           </div>
           <div
-            class="hover:border-[white] hover:rounded-full hover:text-[#2475EE]"
+            class="ease-in-out duration-300 hover:border-[white] hover:rounded-full hover:text-[#2475EE]"
           >
             <i
               class="ri-checkbox-blank-circle-fill rounded-full bg-[white] hover:p-[5px]"
             ></i>
           </div>
           <div
-            class="hover:border-[white] hover:rounded-full hover:text-[#2475EE]"
+            class="ease-in-out duration-300 hover:border-[white] hover:rounded-full hover:text-[#2475EE]"
           >
             <i
               class="ri-checkbox-blank-circle-fill rounded-full bg-[white] hover:p-[5px]"
@@ -569,7 +569,18 @@
     </div>
 
     <script src="https://cdn.jsdelivr.net/npm/locomotive-scroll@3.5.4/dist/locomotive-scroll.js"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js" integrity="sha512-7eHRwcbYkK4d9g/6tD/mhkf++eoTHwpNM9woBxtPUBWm67zeAfFC+HrdoE2GanKeocly/VxeLvIqwvCdk7qScg==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+    <script
+      src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js"
+      integrity="sha512-7eHRwcbYkK4d9g/6tD/mhkf++eoTHwpNM9woBxtPUBWm67zeAfFC+HrdoE2GanKeocly/VxeLvIqwvCdk7qScg=="
+      crossorigin="anonymous"
+      referrerpolicy="no-referrer"
+    ></script>
+    <script
+      src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/ScrollTrigger.min.js"
+      integrity="sha512-onMTRKJBKz8M1TnqqDuGBlowlH0ohFzMXYRNebz+yOcc5TQr/zAKsthzhuv0hiyUKEiQEQXEynnXCvNTOk50dg=="
+      crossorigin="anonymous"
+      referrerpolicy="no-referrer"
+    ></script>
     <script src="script.js"></script>
   </body>
 </html>
