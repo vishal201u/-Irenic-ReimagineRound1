@@ -1,6 +1,6 @@
 const scroll = new LocomotiveScroll({
   el: document.querySelector('.main'),
-  smooth: true
+  smooth: true,
 });
 
 
@@ -37,28 +37,28 @@ tl.from(".box", {
 
 tl.to(".box", {
   scale: 0.5,
-  duration: 0.5,
+  duration: 0.2,
   ease: "power3",
   scrollTrigger: {
     trigger: ".box",
     scroller: "body",
-    markers: true,
-    start: "top 17%",
-    scrub: 2
+    start: "top 15%",
+    scrub: 2,
+    toggleActions: "play pause resume reset"
 
   }
 })
 
 tl.to(".box2", {
-  scale: 0.5,
-  duration: 0.5,
+  scale: 0.7,
+  duration: 0.2,
   ease: "power3",
   scrollTrigger: {
     trigger: ".box",
     scroller: "body",
-    markers: true,
-    start: "bottom 30%",
-    scrub: 2
+    start: "bottom 42%",
+    scrub: 2,
+    toggleActions: "play pause resume reset"
 
   }
 })
@@ -77,7 +77,7 @@ tl.to(".box2", {
 // })
 
 tl.from(".marque", {
-  x: 300,
+  x: 150,
   duration: 0.5,
   delay: 0.5,
   scrollTrigger: {
@@ -86,3 +86,63 @@ tl.from(".marque", {
     scrub: 2
   }
 })
+
+
+tl.to(".box4", {
+  scale: 0.5,
+  duration: 0.2,
+  ease: "power3",
+  scrollTrigger: {
+    trigger: ".box4",
+    scroller: "body",
+    start: "top 95%",
+    scrub: 2,
+    toggleActions: "play pause resume reset"
+
+  }
+}, "b")
+
+
+tl.to(".t1", {
+  scale: 0.5,
+  duration: 0.2,
+  ease: "power3",
+  scrollTrigger: {
+    trigger: ".t1",
+    scroller: "body",
+    start: "top 80%",
+    scrub: 2,
+    toggleActions: "play pause resume reset"
+
+  }
+}, "b")
+
+
+tl.to(".box5 h1", {
+  y:-40,
+  stagger:0.02,
+  duration:0.5,
+  ease: "power3",
+  scrollTrigger: {
+    trigger: ".start",
+    scroller: "body",
+    start:"top 75%",
+
+  }
+})
+
+tl.to(".box6 h1", {
+  y:-40,
+  stagger:0.02,
+  duration:0.5,
+  ease: "power3",
+  scrollTrigger: {
+    trigger: ".start",
+    scroller: "body",
+    markers:true,
+    start:"top 60%",
+
+  }
+})
+
+
