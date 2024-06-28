@@ -56,7 +56,7 @@ tl.to(".box2", {
   scrollTrigger: {
     trigger: ".box",
     scroller: "body",
-    start: "bottom 42%",
+    start: "600",
     scrub: 2,
     toggleActions: "play pause resume reset"
 
@@ -118,31 +118,30 @@ tl.to(".t1", {
 }, "b")
 
 
-tl.to(".box5 h1", {
-  y:-40,
-  stagger:0.02,
-  duration:0.5,
+tl.to(".box5", {
+  x: -400,
+  stagger: 0.02,
+  duration: 0.5,
   ease: "power3",
   scrollTrigger: {
-    trigger: ".start",
-    scroller: "body",
-    start:"top 75%",
-
+    trigger: ".box5",
+    scroller:"body",
+    start: "top 70%",  // Adjust the start point as needed
+    end: "bottom center",  // Define the end point if needed
+    toggleActions: "play none none none",  // Control when the animation plays
+    markers: true
   }
-})
+});
 
-tl.to(".box6 h1", {
-  y:-40,
-  stagger:0.02,
-  duration:0.5,
-  ease: "power3",
-  scrollTrigger: {
-    trigger: ".start",
-    scroller: "body",
-    markers:true,
-    start:"top 60%",
 
-  }
-})
-
+// tl.to(".box6 h1", {
+//   y:-40,
+//   stagger:0.02,
+//   duration:0.5,
+//   ease: "power3",
+//   scrollTrigger: {
+//     trigger: ".box6 h1",
+//     scroller:Element,
+//   }
+// })
 
