@@ -63,18 +63,7 @@ tl.to(".box2", {
   }
 })
 
-// tl.to(".box3", {
-//   scale:0.5,
-//   duration:1,
-//   scrollTrigger:{
-//     trigger:".box",
-//     scroller:"body",
-//     markers:true,
-//     start:"bottom 50%",
-//     scrub:2
 
-//   }
-// })
 
 tl.from(".marque", {
   x: 150,
@@ -117,31 +106,4 @@ tl.to(".t1", {
   }
 }, "b")
 
-
-tl.to(".box5", {
-  x: -400,
-  stagger: 0.02,
-  duration: 0.5,
-  ease: "power3",
-  scrollTrigger: {
-    trigger: ".box5",
-    scroller:"body",
-    start: "top 70%",  // Adjust the start point as needed
-    end: "bottom center",  // Define the end point if needed
-    toggleActions: "play none none none",  // Control when the animation plays
-    markers: true
-  }
-});
-
-
-// tl.to(".box6 h1", {
-//   y:-40,
-//   stagger:0.02,
-//   duration:0.5,
-//   ease: "power3",
-//   scrollTrigger: {
-//     trigger: ".box6 h1",
-//     scroller:Element,
-//   }
-// })
 
