@@ -1,25 +1,341 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="en">
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Indian Railways</title>
-    <link rel="shortcut icon" href="./IRCTC-Color.png" type="image/x-icon">
+    <link rel="shortcut icon" href="./IRCTC-Color.png" type="image/x-icon" />
     <link
       href="https://cdn.jsdelivr.net/npm/remixicon@4.2.0/fonts/remixicon.css"
       rel="stylesheet"
     />
     <script src="https://cdn.tailwindcss.com"></script>
+    <style>
+      html,
+      body {
+        overflow-x: hidden;
+      }
+
+      .marque {
+        width: 100%;
+        max-width: 100%;
+      }
+
+      .menu-toggle {
+        display: none;
+      }
+
+      @media (max-width: 1100px) and (min-width: 769px) {
+        .nav {
+          gap: 2%;
+          justify-content: space-between;
+        }
+
+        .nav .menu-links {
+          gap: 12px;
+          font-size: 0.9rem;
+        }
+
+        .nav .menu-actions {
+          gap: 12px;
+          font-size: 0.9rem;
+        }
+      }
+
+      @media (max-width: 768px) {
+        .main {
+          height: auto !important;
+        }
+
+        .nav {
+          position: fixed !important;
+          top: 0;
+          left: 0;
+          width: 100vw !important;
+          z-index: 99999 !important;
+          height: auto !important;
+          min-height: 64px;
+          padding: 10px 16px;
+          gap: 0;
+          justify-content: space-between;
+          flex-wrap: nowrap;
+          background: rgba(10, 12, 16, 0.94) !important;
+        }
+
+        .nav > div:first-child {
+          width: 52px !important;
+          min-width: 52px;
+          height: 52px;
+          flex: 0 0 52px;
+        }
+
+        .nav .menu-toggle {
+          display: flex;
+          order: 3;
+          width: 42px;
+          height: 42px;
+          align-items: center;
+          justify-content: center;
+          border: 1px solid rgba(255, 255, 255, 0.35);
+          border-radius: 10px;
+          color: white;
+          font-size: 1.35rem;
+        }
+
+        .nav .menu-links {
+          display: none;
+          position: absolute;
+          top: 72px;
+          right: 16px;
+          left: auto;
+          width: min(240px, calc(100vw - 32px));
+          padding: 16px;
+          flex-direction: column;
+          align-items: stretch;
+          gap: 0;
+          background: rgba(24, 26, 28, 0.98);
+          border: 1px solid rgba(255, 255, 255, 0.14);
+          border-radius: 14px;
+          box-shadow: 0 18px 40px rgba(0, 0, 0, 0.35);
+        }
+
+        .nav.menu-open .menu-links {
+          display: flex;
+        }
+
+        .nav .menu-links h1 {
+          width: 100%;
+          padding: 11px 4px;
+          border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+        }
+
+        .nav .menu-links h1:last-child {
+          border-bottom: 0;
+        }
+
+        .nav .menu-actions {
+          order: 2;
+          display: flex;
+          margin-left: auto;
+          margin-right: 12px;
+          gap: 10px;
+          align-items: center;
+        }
+
+        .nav h1 {
+          font-size: 0.9rem;
+        }
+
+        .nav .menu-actions h1:first-child {
+          display: none;
+        }
+
+        .hero-section {
+          min-height: 760px;
+          background-position: center;
+        }
+
+        .hero-inner {
+          width: 92% !important;
+          margin-top: 140px !important;
+        }
+
+        .hero-title {
+          font-size: clamp(2.3rem, 8vw, 3.5rem) !important;
+          line-height: 1.1;
+          text-align: center;
+        }
+
+        .search-panel {
+          height: auto !important;
+          padding: 18px 14px 20px;
+          border-radius: 22px;
+        }
+
+        .search-panel > div:first-child {
+          width: 100% !important;
+        }
+
+        .search-panel .route-row,
+        .search-panel .search-grid,
+        .search-panel .chip-row,
+        .search-panel .action-row,
+        .search-panel .field-box,
+        .search-panel .field-set {
+          display: grid !important;
+          grid-template-columns: 1fr !important;
+          gap: 14px !important;
+        }
+
+        .search-panel .route-row {
+          width: 100%;
+        }
+
+        .search-panel .route-box,
+        .search-panel .field-box,
+        .search-panel .field-set {
+          width: 100% !important;
+          gap: 8px !important;
+        }
+
+        .search-panel .route-box > div:last-child,
+        .search-panel .field-box > .field-header,
+        .search-panel .field-box .field-value,
+        .search-panel .route-box {
+          justify-content: space-between !important;
+          width: 100% !important;
+          gap: 10px !important;
+        }
+
+        .search-panel .field-box {
+          padding: 12px 14px !important;
+        }
+
+        .search-panel .field-box h1,
+        .search-panel .route-box h1,
+        .search-panel .field-set h1 {
+          font-size: 0.88rem !important;
+        }
+
+        .search-panel .chip-row {
+          display: flex !important;
+          max-width: 100%;
+          overflow: hidden;
+          white-space: nowrap;
+          padding-bottom: 6px;
+        }
+
+        .search-panel .chip-row > div {
+          flex: 0 0 auto;
+        }
+
+        .search-panel .chip-row > div:last-child {
+          flex: 1 1 auto;
+          min-width: 0;
+          overflow-x: auto;
+        }
+
+        .search-panel .action-row {
+          display: flex !important;
+          flex-direction: column-reverse;
+          gap: 12px !important;
+        }
+
+        .popular-services .service-grid,
+        .package-grid,
+        .footer-links {
+          display: grid !important;
+          grid-template-columns: repeat(2, minmax(0, 1fr)) !important;
+        }
+
+        .popular-services .service-card,
+        .package-card {
+          min-width: 0;
+          padding: 1.25rem 0.75rem !important;
+        }
+
+        .popular-services .service-card h1,
+        .package-card h1 {
+          font-size: 1rem !important;
+        }
+
+        .box3 .call-banner {
+          min-height: 260px !important;
+          background-position: center;
+        }
+
+        .box3 .call-banner > div {
+          width: 82% !important;
+          margin-left: 8% !important;
+          margin-top: 14% !important;
+        }
+
+        .box3 .call-banner h1:first-child {
+          font-size: clamp(1.4rem, 5vw, 2.4rem) !important;
+        }
+
+        .call-banner .call-btn {
+          width: auto !important;
+          min-width: 140px;
+          padding: 12px 18px !important;
+          text-align: center;
+          font-size: 0.95rem !important;
+        }
+
+        .footer-top {
+          flex-direction: column;
+          align-items: center;
+          gap: 16px;
+        }
+
+        .footer-links {
+          display: block !important;
+          width: 92%;
+          gap: 20px 18px;
+        }
+
+        .footer-links .box5,
+        .footer-links .box6 {
+          display: grid !important;
+          grid-template-columns: repeat(2, minmax(0, 1fr));
+          width: 100%;
+          gap: 20px 18px;
+        }
+      }
+
+      @media (max-width: 480px) {
+        .popular-services .service-grid,
+        .package-grid,
+        .footer-links .box5,
+        .footer-links .box6 {
+          grid-template-columns: 1fr;
+        }
+
+        .hero-section {
+          min-height: 820px;
+        }
+
+        .search-panel .chip-row {
+          gap: 8px;
+        }
+
+        .search-panel .chip-row > h1 {
+          font-size: 0.8rem !important;
+        }
+
+        .box4 {
+          display: grid !important;
+          grid-template-columns: 1fr !important;
+          row-gap: 18px;
+        }
+
+        .box4 > div {
+          width: 92% !important;
+          min-height: 420px;
+        }
+      }
+    </style>
   </head>
   <body>
-    <div class="main h-[100vmax] w-full relative bg-black font-[gilroy] z-[9999] bg-black">
+    <div
+      data-scroll-container
+      class="main h-[100vmax] w-full relative bg-black font-[gilroy] z-[9999] bg-black"
+    >
       <div
         class="nav z-50 h-[5%] bg-white/20 backdrop-blur fixed w-full text-white text-xl flex justify-center gap-[8%] items-center"
       >
         <div
           class="bg-[url(./IRCTC-Color.png)] flex h-[60%] w-[4%] bg-cover"
         ></div>
-        <div class="flex justify-between text-lg gap-[20px]">
+        <button
+          class="menu-toggle"
+          type="button"
+          aria-label="Open navigation menu"
+          aria-expanded="false"
+        >
+          <i class="ri-menu-line"></i>
+        </button>
+        <div class="menu-links flex justify-between text-lg gap-[20px]">
           <h1>Train</h1>
           <h1>Food</h1>
           <h1>
@@ -31,22 +347,24 @@
           <h1>Contact us</h1>
           <h1>More</h1>
         </div>
-        <div class="flex items-center text-lg gap-[20%]">
+        <div class="menu-actions flex items-center text-lg gap-[20%]">
           <h1>Register</h1>
           <h1 class="bg-[#2475EE] py-2 px-4 rounded-lg">Login</h1>
         </div>
       </div>
       <div
-        class="w-full h-[45%] bg-center bg-cover flex justify-center items-center bg-[url(https://images.unsplash.com/photo-1630561539163-42de0d99718f?q=80&w=2070&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D)]"
+        class="hero-section w-full h-[45%] bg-center bg-cover flex justify-center items-center bg-[url(https://images.unsplash.com/photo-1630561539163-42de0d99718f?q=80&w=2070&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D)]"
       >
         <div
-          class="h-[95%] mt-[40%] flex flex-col text-[200%] items-center w-[78%]"
+          class="hero-inner h-[95%] mt-[40%] flex flex-col text-[200%] items-center w-[78%]"
         >
-          <h1 class="indian text-white text-6xl mb-[20px] font-semibold">
+          <h1
+            class="indian hero-title text-white text-6xl mb-[20px] font-semibold"
+          >
             Welcome to Indian Railways
           </h1>
           <div
-            class="box bg-[#181A1C] h-[200%] rounded-[30px] flex justify-center w-full"
+            class="box search-panel bg-[#181A1C] h-[200%] rounded-[30px] flex justify-center w-full"
           >
             <div class="h-[100%] w-[80%]">
               <h1 class="text-[#C4C4C4] mt-[2vw] mb-[2vw]">
@@ -54,8 +372,12 @@
               </h1>
 
               <div class="flex flex-col">
-                <div class="flex justify-between text-[#515151] items-center">
-                  <div class="flex flex-col text-[20px] justify-between">
+                <div
+                  class="route-row flex justify-between text-[#515151] items-center"
+                >
+                  <div
+                    class="route-box flex flex-col text-[20px] justify-between"
+                  >
                     <h1>From</h1>
                     <div
                       class="flex rounded-[10px] bg-[#292C34] justify-center items-center p-[10px] gap-[16vw]"
@@ -75,7 +397,9 @@
                     class="ri-exchange-fill text-[#2475EE] flex rounded-full"
                   ></i>
 
-                  <div class="flex flex-col text-[20px] justify-between">
+                  <div
+                    class="route-box flex flex-col text-[20px] justify-between"
+                  >
                     <h1>To</h1>
                     <div
                       class="flex rounded-[10px] bg-[#292C34] justify-center items-center p-[10px] gap-[16vw]"
@@ -93,8 +417,8 @@
                   </div>
                 </div>
               </div>
-              <div class="flex gap-[20px] mt-[5%] text-[45%]">
-                <div class="text-[#676767] flex flex-col gap-[10px]">
+              <div class="search-grid flex gap-[20px] mt-[5%] text-[45%]">
+                <div class="field-box text-[#676767] flex flex-col gap-[10px]">
                   <h1>Departure Date</h1>
                   <div
                     class="flex gap-[10px] rounded-[10px] gap-[7vw] p-[15px] bg-[#292C34]"
@@ -107,7 +431,7 @@
                     </div>
                   </div>
                 </div>
-                <div class="text-[#676767] flex flex-col gap-[10px]">
+                <div class="field-box text-[#676767] flex flex-col gap-[10px]">
                   <h1>Return Date</h1>
                   <div
                     class="flex gap-[10px] rounded-[10px] p-[15px] gap-[7vw] bg-[#292C34]"
@@ -120,7 +444,7 @@
                     </div>
                   </div>
                 </div>
-                <div class="text-[#676767] flex flex-col gap-[10px]">
+                <div class="field-box text-[#676767] flex flex-col gap-[10px]">
                   <h1>Quota</h1>
                   <div
                     class="flex gap-[10px] rounded-[10px] p-[15px] gap-[7vw] bg-[#292C34]"
@@ -133,7 +457,7 @@
                     </div>
                   </div>
                 </div>
-                <div class="text-[#676767] flex flex-col gap-[10px]">
+                <div class="field-box text-[#676767] flex flex-col gap-[10px]">
                   <h1>Classes</h1>
                   <div
                     class="flex gap-[10px] rounded-[10px] p-[15px] gap-[99px] bg-[#292C34]"
@@ -147,7 +471,9 @@
                   </div>
                 </div>
               </div>
-              <div class="text-[45%] items-center mt-[2%] justify-between flex">
+              <div
+                class="chip-row text-[45%] items-center mt-[2%] justify-between flex"
+              >
                 <div><h1 class="text-[#676767]">Filters</h1></div>
                 <div class="flex gap-[20px] text-[95%]">
                   <h1
@@ -172,7 +498,7 @@
                   </h1>
                 </div>
               </div>
-              <div class="flex justify-between mt-[4vw] text-[40%]">
+              <div class="action-row flex justify-between mt-[4vw] text-[40%]">
                 <div
                   class="text-[white] border-[1px] border-[white] rounded-[10px] pr-[20px] pl-[20px] p-[10px] bg-"
                 >
@@ -189,15 +515,17 @@
         </div>
       </div>
       <div
-        class="w-[100%] flex justify-center h-[60%] bg-cover bg-[url(https://w0.peakpx.com/wallpaper/18/8/HD-wallpaper-black-blue-boxes-black.jpg)]"
+        class="popular-services w-[100%] flex justify-center h-[60%] bg-cover bg-[url(https://w0.peakpx.com/wallpaper/18/8/HD-wallpaper-black-blue-boxes-black.jpg)]"
       >
         <div class="box2 w-[80%] h-[50%] flex items-center flex-col mt-[25%]">
           <h1 class="text-[3vw] text-[#E2E5EC] font-bold">
             Our other popular services
           </h1>
-          <div class="flex gap-[2vw] text-[#E2E5EC] mt-[2vw] text-[2vw]">
+          <div
+            class="service-grid flex gap-[2vw] text-[#E2E5EC] mt-[2vw] text-[2vw]"
+          >
             <div
-              class="pl-[4vw] flex flex-col items-center pr-[4vw] p-[3vw] rounded-[15px] bg-[#181A1C]"
+              class="service-card pl-[4vw] flex flex-col items-center pr-[4vw] p-[3vw] rounded-[15px] bg-[#181A1C]"
             >
               <i
                 class="ri-plane-fill pl-[2vw] pr-[2vw] p-[1vw] rounded-[15px] bg-[#1F2022]"
@@ -205,7 +533,7 @@
               <h1 class="text-[20px]">Flights</h1>
             </div>
             <div
-              class="pl-[4vw] flex flex-col items-center pr-[4vw] p-[3vw] rounded-[15px] bg-[#181A1C]"
+              class="service-card pl-[4vw] flex flex-col items-center pr-[4vw] p-[3vw] rounded-[15px] bg-[#181A1C]"
             >
               <i
                 class="ri-hotel-line pl-[2vw] pr-[2vw] p-[1vw] rounded-[15px] bg-[#1F2022]"
@@ -213,7 +541,7 @@
               <h1 class="text-[20px]">Hotels</h1>
             </div>
             <div
-              class="pl-[4vw] flex flex-col items-center pr-[4vw] p-[3vw] rounded-[15px] bg-[#181A1C]"
+              class="service-card pl-[4vw] flex flex-col items-center pr-[4vw] p-[3vw] rounded-[15px] bg-[#181A1C]"
             >
               <i
                 class="ri-road-map-fill pl-[2vw] pr-[2vw] p-[1vw] rounded-[15px] bg-[#1F2022]"
@@ -221,7 +549,7 @@
               <h1 class="text-[20px]">RailDrishti</h1>
             </div>
             <div
-              class="pl-[4vw] flex flex-col items-center pr-[4vw] p-[3vw] rounded-[15px] bg-[#181A1C]"
+              class="service-card pl-[4vw] flex flex-col items-center pr-[4vw] p-[3vw] rounded-[15px] bg-[#181A1C]"
             >
               <i
                 class="ri-restaurant-2-fill pl-[2vw] pr-[2vw] p-[1vw] rounded-[15px] bg-[#1F2022]"
@@ -229,7 +557,7 @@
               <h1 class="text-[20px]">E-catering</h1>
             </div>
             <div
-              class="pl-[4vw] flex flex-col items-center pr-[4vw] p-[3vw] rounded-[15px] bg-[#181A1C]"
+              class="service-card pl-[4vw] flex flex-col items-center pr-[4vw] p-[3vw] rounded-[15px] bg-[#181A1C]"
             >
               <i
                 class="ri-bus-fill pl-[2vw] pr-[2vw] p-[1vw] rounded-[15px] bg-[#1F2022]"
@@ -237,9 +565,11 @@
               <h1 class="text-[20px]">Bus</h1>
             </div>
           </div>
-          <div class="flex gap-[2vw] text-[#E2E5EC] mt-[2vw] text-[2vw]">
+          <div
+            class="service-grid flex gap-[2vw] text-[#E2E5EC] mt-[2vw] text-[2vw]"
+          >
             <div
-              class="pl-[3vw] flex flex-col items-center pr-[3vw] p-[3vw] rounded-[15px] bg-[#181A1C]"
+              class="service-card pl-[3vw] flex flex-col items-center pr-[3vw] p-[3vw] rounded-[15px] bg-[#181A1C]"
             >
               <i
                 class="ri-ping-pong-fill pl-[2vw] pr-[2vw] p-[1vw] rounded-[15px] bg-[#1F2022]"
@@ -247,7 +577,7 @@
               <h1 class="text-[20px]">Holiday Packs</h1>
             </div>
             <div
-              class="pl-[3vw] flex flex-col items-center pr-[3vw] p-[3vw] rounded-[15px] bg-[#181A1C]"
+              class="service-card pl-[3vw] flex flex-col items-center pr-[3vw] p-[3vw] rounded-[15px] bg-[#181A1C]"
             >
               <i
                 class="ri-train-line pl-[2vw] pr-[2vw] p-[1vw] rounded-[15px] bg-[#1F2022]"
@@ -255,7 +585,7 @@
               <h1 class="text-[20px]">Tourist Train</h1>
             </div>
             <div
-              class="pl-[3vw] flex flex-col items-center pr-[3vw] p-[3vw] rounded-[15px] bg-[#181A1C]"
+              class="service-card pl-[3vw] flex flex-col items-center pr-[3vw] p-[3vw] rounded-[15px] bg-[#181A1C]"
             >
               <i
                 class="ri-landscape-fill pl-[2vw] pr-[2vw] p-[1vw] rounded-[15px] bg-[#1F2022]"
@@ -263,7 +593,7 @@
               <h1 class="text-[20px]">Hill railways</h1>
             </div>
             <div
-              class="pl-[3vw] flex flex-col items-center pr-[3vw] p-[3vw] rounded-[15px] bg-[#181A1C]"
+              class="service-card pl-[3vw] flex flex-col items-center pr-[3vw] p-[3vw] rounded-[15px] bg-[#181A1C]"
             >
               <i
                 class="ri-train-line pl-[2vw] pr-[2vw] p-[1vw] rounded-[15px] bg-[#1F2022]"
@@ -273,14 +603,18 @@
           </div>
         </div>
       </div>
-      <div class="box3 mt-[-2px] w-full flex justify-center h-[35%] bg-[#020308]">
-        <div class="mt-[6vw] bg-cover w-[100%] h-[85%] bg-[url(./call.jpg)]">
+      <div
+        class="box3 mt-[-2px] w-full flex justify-center h-[35%] bg-[#020308]"
+      >
+        <div
+          class="call-banner mt-[6vw] bg-cover w-[100%] h-[85%] bg-[url(./call.jpg)]"
+        >
           <div class="text-[#FFFFFF] ml-[10%] mt-[12%] w-[50%]">
             <h1 class="text-[#FFFFFF] text-[3vw] font-semibold">
               Have a question or need <br />assistance? We're here to help.
             </h1>
             <h1
-              class="p-[1vw] bg-[#3268E8] w-[22%] mt-[2%] rounded-[10px] pl-[3vw] pr-[1px]"
+              class="call-btn p-[1vw] bg-[#3268E8] w-[22%] mt-[2%] rounded-[10px] pl-[3vw] pr-[1px]"
             >
               Call 14646
             </h1>
@@ -307,9 +641,11 @@
       </div>
 
       <div class="h-[30%] bg-[#020308] w-[100%] mt-[-2px] text-white">
-        <div class="box4 w-[100%] flex justify-center gap-[1%] h-[100%]">
+        <div
+          class="box4 package-grid w-[100%] flex justify-center gap-[1%] h-[100%]"
+        >
           <div
-            class="w-[30%] bg-[#181A1C] flex flex-col rounded-[9%] gap-[1%] items-center text- h-[94%]"
+            class="package-card w-[30%] bg-[#181A1C] flex flex-col rounded-[9%] gap-[1%] items-center text- h-[94%]"
           >
             <div
               class="bg-cover rounded-[5%] mt-[5%] w-[88%] h-[55%] bg-[url(https://qph.cf2.quoracdn.net/main-qimg-433c89b4d0578f8bfe2be37dcfa4ced1-lq)]"
@@ -327,7 +663,7 @@
           </div>
 
           <div
-            class="w-[30%] bg-[#181A1C] flex flex-col rounded-[9%] gap-[1%] items-center text- h-[94%]"
+            class="package-card w-[30%] bg-[#181A1C] flex flex-col rounded-[9%] gap-[1%] items-center text- h-[94%]"
           >
             <div
               class="bg-cover rounded-[5%] mt-[5%] w-[88%] h-[55%] bg-[url(https://utsav.gov.in/public/uploads/event_picture_image/event_962/1662281313519412441.jpg)]"
@@ -344,7 +680,7 @@
             </div>
           </div>
           <div
-            class="w-[30%] bg-[#181A1C] flex flex-col rounded-[9%] gap-[1%] items-center text- h-[94%]"
+            class="package-card w-[30%] bg-[#181A1C] flex flex-col rounded-[9%] gap-[1%] items-center text- h-[94%]"
           >
             <div
               class="bg-cover rounded-[5%] mt-[5%] w-[88%] h-[55%] bg-[url(https://saishishirtours.in/wp-content/uploads/2022/05/varanasi-1-1-e1652713768116-680x500.webp)]"
@@ -389,8 +725,10 @@
       </div>
       <div class="h-[70%] bg-[#181A1C] w-[100%] mt-[2%] text-white">
         <div class="start mt-[-3%] flex flex-col items-center">
-          <div class="flex justify-between mt-[8%] text-[2vw] w-[80%]">
-            <div><img class="w-16" src="./IRCTC-Color.png" alt=""></div>
+          <div
+            class="footer-top flex justify-between mt-[8%] text-[2vw] w-[80%]"
+          >
+            <div><img class="w-16" src="./IRCTC-Color.png" alt="" /></div>
             <div class="flex gap-[10%]">
               <div>
                 <i
@@ -414,9 +752,9 @@
               </div>
             </div>
           </div>
-          <div class="flex flex-col mt-[8vw] gap-[4vw]">
+          <div class="footer-links flex flex-col mt-[8vw] gap-[4vw]">
             <div class="box5 flex gap-[6vw]">
-              <div class=" flex flex-col gap-[1vw]">
+              <div class="flex flex-col gap-[1vw]">
                 <h1 class="text-[#5498FE] font-[500] text-[20px]">Company</h1>
                 <div class="flex flex-col gap-[4px] text-[#ADADAD]">
                   <h1>Updates</h1>
@@ -426,7 +764,7 @@
                   <h1>Contact us</h1>
                 </div>
               </div>
-              <div class=" flex flex-col gap-[1vw]">
+              <div class="flex flex-col gap-[1vw]">
                 <h1 class="text-[#5498FE] font-[500] text-[20px]">Company</h1>
                 <div class="flex flex-col gap-[4px] text-[#ADADAD]">
                   <h1>Updates</h1>
@@ -437,7 +775,7 @@
                   <h1>Contact us</h1>
                 </div>
               </div>
-              <div class=" flex flex-col gap-[1vw]">
+              <div class="flex flex-col gap-[1vw]">
                 <h1 class="text-[#5498FE] font-[500] text-[20px]">Company</h1>
                 <div class="flex flex-col gap-[4px] text-[#ADADAD]">
                   <h1>Updates</h1>
@@ -447,7 +785,7 @@
                   <h1>Contact us</h1>
                 </div>
               </div>
-              <div class=" flex flex-col gap-[1vw]">
+              <div class="flex flex-col gap-[1vw]">
                 <h1 class="text-[#5498FE] font-[500] text-[20px]">Company</h1>
                 <div class="flex flex-col gap-[4px] text-[#ADADAD]">
                   <h1>Updates</h1>
@@ -467,7 +805,7 @@
                   <h1>Products</h1>
                 </div>
               </div>
-              <div class=" flex flex-col gap-[1vw]">
+              <div class="flex flex-col gap-[1vw]">
                 <h1 class="text-[#5498FE] font-[500] text-[20px]">Company</h1>
                 <div class="flex flex-col gap-[4px] text-[#ADADAD]">
                   <h1>Updates</h1>
@@ -476,7 +814,7 @@
                   <h1>Products</h1>
                 </div>
               </div>
-              <div class=" flex flex-col gap-[1vw]">
+              <div class="flex flex-col gap-[1vw]">
                 <h1 class="text-[#5498FE] font-[500] text-[20px]">Company</h1>
                 <div class="flex flex-col gap-[4px] text-[#ADADAD]">
                   <h1>Updates</h1>
@@ -498,7 +836,7 @@
                   <h1>Contact us</h1>
                 </div>
               </div>
-              <div class=" flex flex-col gap-[1vw]">
+              <div class="flex flex-col gap-[1vw]">
                 <h1 class="text-[#5498FE] font-[500] text-[20px]">Company</h1>
                 <div class="flex flex-col gap-[4px] text-[#ADADAD]">
                   <h1>Updates</h1>
@@ -509,7 +847,7 @@
                   <h1>Contact us</h1>
                 </div>
               </div>
-              <div class=" flex flex-col gap-[1vw]">
+              <div class="flex flex-col gap-[1vw]">
                 <h1 class="text-[#5498FE] font-[500] text-[20px]">Company</h1>
                 <div class="flex flex-col gap-[4px] text-[#ADADAD]">
                   <h1>Updates</h1>
@@ -523,7 +861,7 @@
                   <h1>Products</h1>
                 </div>
               </div>
-              <div class=" flex flex-col gap-[1vw]">
+              <div class="flex flex-col gap-[1vw]">
                 <h1 class="text-[#5498FE] font-[500] text-[20px]">Company</h1>
                 <div class="flex flex-col gap-[4px] text-[#ADADAD]">
                   <h1>Updates</h1>
